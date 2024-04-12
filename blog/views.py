@@ -7,8 +7,8 @@ def get_related_posts_count(tag):
     return tag.posts.count()
 
 
-def get_likes_post(post):
-    return post.likes.count()
+# def get_likes_post(post):
+#     return post.likes.count()
 
 
 def serialize_post(post):
