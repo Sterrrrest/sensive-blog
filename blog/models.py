@@ -17,7 +17,7 @@ class PostQuerySet(models.QuerySet):
     def fetch_with_comments_count(self):
 
         most_popular_posts_ids = [post.id for post in self]
-        
+
         posts_with_comments = Post.objects.filter(id__in=most_popular_posts_ids).annotate(
             comments_count=Count('comments'))
         ids_and_comments = posts_with_comments.values_list('id', 'comments_count')
@@ -35,7 +35,6 @@ class Post(models.Model):
     slug = models.SlugField('Название в виде url', max_length=200)
     image = models.ImageField('Картинка')
     published_at = models.DateTimeField('Дата и время публикации')
-    objects = PostQuerySet.as_manager()
 
     author = models.ForeignKey(
         User,
@@ -52,6 +51,8 @@ class Post(models.Model):
         related_name='posts',
         verbose_name='Теги')
 
+    objects = PostQuerySet.as_manager()
+    
     def __str__(self):
         return self.title
 
