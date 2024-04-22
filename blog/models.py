@@ -52,7 +52,7 @@ class Post(models.Model):
         verbose_name='Теги')
 
     objects = PostQuerySet.as_manager()
-    
+
     def __str__(self):
         return self.title
 
