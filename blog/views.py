@@ -7,7 +7,6 @@ def get_related_posts_count(tag):
     return tag.posts.count()
 
 
-
 def serialize_post_optimized(post):
     return {
         'title': post.title,
@@ -26,10 +25,8 @@ def serialize_tag_optimized(tag):
     return {
         'title': tag.title,
         'posts_with_tag':  tag.num_tags,
-            # Post.objects.prefetch_related(Prefetch('tags', queryset=Tag.objects.popular().order_by('num_tags'))),
-
-
     }
+
 
 def index(request):
 
