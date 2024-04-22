@@ -49,8 +49,8 @@ def index(request):
 
 
 def post_detail(request, slug):
-    post = Post.objects.get_object_or_404(slug=slug)
-    comments = post.comments.all()
+    post = get_object_or_404(Post, slug=slug)
+    comments = post.comments.all().prefetch_related('author')
     serialized_comments = []
     for comment in comments:
         serialized_comments.append({
@@ -90,7 +90,7 @@ def post_detail(request, slug):
 
 
 def tag_filter(request, tag_title):
-    tag = Tag.objects.get_object_or_404(title=tag_title)
+    tag = get_object_or_404(Tag, title=tag_title)
 
     most_popular_tags = Tag.objects.popular()[:5]
 
