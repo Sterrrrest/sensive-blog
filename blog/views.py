@@ -55,8 +55,6 @@ def post_detail(request, slug):
             'author': comment.author.username,
         })
 
-    # likes = Post.objects.popular()
-
     related_tags = post.tags.popular()
 
     serialized_post = {
